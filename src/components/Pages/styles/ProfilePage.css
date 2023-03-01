@@ -1,0 +1,25 @@
+*{
+    box-sizing: border-box;
+}
+.profileSection{
+    display: flex;
+    height: 90vh;
+    width: 97vw;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.profileContainer{
+    margin: 10vh;
+    padding: 10%;
+    background-color: var(--white);
+    border-radius: 20px;
+    display: flex;
+    height: 90%;
+    flex-direction: column;
+}
+
+.imgClass{
+    border-radius: 50px;
+}

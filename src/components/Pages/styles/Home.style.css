@@ -1,0 +1,32 @@
+.GreetingsClass{
+    display: flex;
+    justify-content: space-around;
+    
+}
+.DisplayWelcome{
+    margin: 20px 10px;
+    padding: 10px;
+    box-sizing: border-box;
+    border-radius: 3px;
+    color : var(--darkNavy);
+    background-color: var(--blueWhite);
+    /* border: 2px solid; */
+    /* border-color: var(--darkNavy); */
+    border-radius: 8px;
+}
+
+/* team leader component styles */
+.leaderTeamsContainer{
+    display: flex;
+}
+.leaderTeams{
+    min-height: 150px;
+    min-width: 150px;
+    background-color: var(--blueWhite);
+    color : var(--darkNavy);
+    border-radius : 10px;
+    text-align : center;
+    border-radius: 8px;
+    border: 2px solid;
+    border-color:  var(--darkNavy);
+}
