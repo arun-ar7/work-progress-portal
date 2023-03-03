@@ -1,12 +1,14 @@
 .GreetingsClass{
     display: flex;
     justify-content: space-around;
-    
+    flex-wrap: wrap;
 }
+
 .DisplayWelcome{
     margin: 20px 10px;
     padding: 10px;
     box-sizing: border-box;
+    flex-wrap: wrap;
     border-radius: 3px;
     color : var(--darkNavy);
     background-color: var(--blueWhite);
@@ -15,18 +17,106 @@
     border-radius: 8px;
 }
 
+@media (max-width : 455px){
+    .GreetingsClass{
+        flex-direction: column;
+    }
+}
+
 /* team leader component styles */
 .leaderTeamsContainer{
     display: flex;
 }
 .leaderTeams{
-    min-height: 150px;
-    min-width: 150px;
-    background-color: var(--blueWhite);
-    color : var(--darkNavy);
+    min-height: 120px;
+    min-width: 170px;
+    /* background-color: var(--blueWhite); */
+    background-image: radial-gradient(circle, var(--lightNavy),var(--darkNavy));
+    color : var(--blueWhite);
     border-radius : 10px;
-    text-align : center;
     border-radius: 8px;
     border: 2px solid;
     border-color:  var(--darkNavy);
+    margin: 10px;
+    box-shadow: 2px 2px 5px var(--darkNavy);
+    
+    transition: 0.3s;
+}
+.leaderTeams:hover{
+    transform: translate(1px,1px);
+    box-shadow: 5px 5px 5px var(--darkNavy);
+    border: 2px solid;
+    border-color:  var(--darkNavy);
+    
+}
+
+/* content inside team name card */
+.teamLeaderChild{
+    display: flex;
+}
+
+.teamLeaderChildDAte{
+    flex-direction: column;
+}
+
+.teamLeaderChild span{
+    font-size: small;
+}
+
+/* .teamLeaderChild > div{
+    display: flex;
+} */
+
+@media (min-width : 455px){
+    .leaderTeamsContainer{
+        flex-wrap: wrap;
+    }
+}
+
+@media (max-width : 455px){
+    .leaderTeamsContainer{
+        flex-direction: column;
+    }
+    .teamLeaderChild{
+        justify-content: center;
+        text-align: center;
+    }
+}
+
+
+/*design for team leader modal*/
+
+.css-1wnsr1i{
+    border-radius: 30px;
+    background-color: var(--darkNavy)!important;
+    padding: 30px
+}
+.leaderModalHeading{
+    font-weight: bold;
+    color : white;
+    margin: 6px;
+}
+.leaderModalText{
+    color : white;
+    margin: 6px;
+
+}
+.leaderModalInputClass{
+    border-radius: 5px;
+    padding: 6px;
+    margin: 6px;
+}
+.leaderModalInputButton{
+    background-color: var(--lightNavy)!important;
+    color : var(--white);
+    transition: 0.5s;
+    border: 2px solid;
+    border-color: var(--darkNavy)!important;
+}
+.leaderModalInputButton:hover{
+    background-color: var(--darkNavy) !important;
+    color : var(--blueWhite);
+    border: 2px solid var(--white);
+    border-color: var(--white)!important;
+    transition: 0.5s;
 }

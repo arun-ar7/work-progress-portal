@@ -45,7 +45,20 @@ const TeamLeader = () => {
                   onClickingTeam(team.teamName);
                 }}
               >
-                {team.teamName}
+                <div className="teamLeaderChild">
+                  <span>Team ID :</span> {team.teamName}
+                </div>
+                <div className="teamLeaderChild teamLeaderChildDAte">
+                  <span>Created At :</span>
+                  <div>
+                    <span>Date : </span>
+                    {new Date(team.createdAt).toLocaleDateString()}
+                  </div>
+                  <div>
+                    <span>Time :</span>{" "}
+                    {new Date(team.createdAt).toLocaleTimeString()}
+                  </div>
+                </div>
               </div>
             );
           })}

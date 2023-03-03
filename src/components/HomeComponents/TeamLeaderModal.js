@@ -4,7 +4,15 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
-import { getDatabase, ref, push, set, onValue } from "firebase/database";
+import {
+  getDatabase,
+  ref,
+  push,
+  set,
+  onValue,
+  get,
+  child,
+} from "firebase/database";
 import { useUserContext } from "../misc/ValueContext";
 import Header from "../Header";
 
@@ -37,32 +45,47 @@ const TeamLeaderModal = () => {
     const db = getDatabase();
     let flag = false;
     const teamRef = ref(db, "teams/" + teamId.current.value);
-    onValue(teamRef, (snapshot) => {
-      const data = snapshot.val();
-      if (data) {
-        flag = true;
-      }
-    });
-    if (flag) {
-      console.log("Team already exists.....");
-      return;
-    }
+    get(child(ref(db), `teams/${teamId.current.value}`))
+      .then((snapshot) => {
+        if (snapshot.exists()) {
+          console.log("Team already exists");
+          return;
+        } else {
+          console.log("team will be added");
+          //code to add data to the database
+          set(ref(db, "teams/" + teamId.current.value), {
+            leader: user.userDetails.uid,
+            password: passwordRef.current.value,
+            createdAt: Date.now(),
+          });
 
-    await set(ref(db, "teams/" + teamId.current.value), {
-      leader: user.userDetails.uid,
-      password: passwordRef.current.value,
-      createdAt: Date.now(),
-    });
-
-    // Create a new post reference with an auto-generated id
-    const postListRef = ref(
-      db,
-      `profiles/${user.userDetails.uid}/teamsAsLeader`
-    );
-    const newPostRef = push(postListRef);
-    set(newPostRef, {
-      teamName: teamId.current.value,
-    });
+          // Create a new post reference with an auto-generated id
+          const postListRef = ref(
+            db,
+            `profiles/${user.userDetails.uid}/teamsAsLeader`
+          );
+          const newPostRef = push(postListRef);
+          set(newPostRef, {
+            teamName: teamId.current.value,
+            createdAt: Date.now(),
+          });
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+    // onValue(teamRef, (snapshot) => {
+    //   const data = snapshot.val();
+    //   if (data) {
+    //     flag = true;
+    //     console.log("Team already exists");
+    //     return;
+    //   }
+    // });
+    // if (flag) {
+    //   console.log("Team already exists.....");
+    //   return;
+    // }
   };
 
   return (
@@ -75,17 +98,35 @@ const TeamLeaderModal = () => {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          <Typography id="modal-modal-title" variant="h6" component="h2">
-            Create your Team
-          </Typography>
-          <input type="number" placeholder="team id in numbers" ref={teamId} />
-          <input
-            type="password"
-            placeholder="enter your password"
-            ref={passwordRef}
-          />
-          <p>Team Leader : you</p>
-          <button onClick={createTeamOnClick}>Create Team</button>
+          {/* <Typography id="modal-modal-title" variant="h6" component="h2"> */}
+          <div className="leaderModalHeading">Create your Team</div>
+
+          <div className="leaderModalText">
+            <p>Team Leader : {user.userDetails.displayName}</p>
+          </div>
+          {/* </Typography> */}
+          <div>
+            <input
+              type="number"
+              placeholder="team id in numbers"
+              ref={teamId}
+              className="leaderModalInputClass"
+            />
+          </div>
+          <div>
+            <input
+              type="password"
+              placeholder="enter your password"
+              ref={passwordRef}
+              className="leaderModalInputClass"
+            />
+          </div>
+          <button
+            onClick={createTeamOnClick}
+            className="leaderModalInputClass leaderModalInputButton"
+          >
+            Create Team
+          </button>
           {/* <Typography id="modal-modal-description" sx={{ mt: 2 }}>
             Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
           </Typography> */}

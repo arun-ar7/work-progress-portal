@@ -10,6 +10,13 @@
   --white : #ffffff;
 }
 
+/* @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500&display=swap'); */
+
+font-face{
+  font-family: "kalam";
+  src: url(./fonts/Kalam/Kalam-Regular.ttf);
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
