@@ -1,0 +1,42 @@
+.SigninComponent{
+    width: 95vw;
+    height: 90vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.SigninContainer{
+    width: 30vw;
+    height: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--blue);
+    text-align: center;
+    border-radius: 8px;
+    
+    /* padding: 10px; */
+}
+.SigninContainer button{
+    max-width: 20vw;
+    color: black;
+    border-radius: 8px;
+    border: none;
+    padding: 10px;
+    display: flex;
+    cursor: pointer;
+}
+.GoogleIcon{
+    flex-grow: 2;
+}
+.SigninButtonContent{
+    flex-grow: 1;
+}
+@media screen {
+    .SigninContainer button{
+        font-size: 0.9em;
+    }
+}
+.buttonForSignin{
+    
+}
